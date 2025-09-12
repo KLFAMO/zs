@@ -1,0 +1,7 @@
+satzm - to idealne pole do walniania (to zakłada ogniskowanie wiazki ZS jak u mnie w doktorkacie)
+
+simfield - to pole jakie powinnien miec układ rzeczywisty wraz z osłonami magnetycznymi, tak według symulacji rzeczywisty układ powinien działać
+
+A10 - to jest pomiar dla 3A w głownej części i 10A w dodatkowej (nieidealne)
+
+A14 - to dooptymalizowany (tylko konców, wcześniej jak w A10) dla dodatkowej cześci z 14 A
