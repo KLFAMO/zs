@@ -22,8 +22,8 @@ def import_meas():
     # B = B * (-1)
     return z, B
 
-# z, B = import_ref()
-z, B = import_meas()
+z, B = import_ref()
+# z, B = import_meas()
 
 
 fig, (ax1, ax2) = plt.subplots(2, gridspec_kw={'height_ratios': [1, 3]})
@@ -39,15 +39,15 @@ mu_bohr = 9.274e-24
 gamma = 32e6
 Gamma = 2*np.pi*gamma
 lam = 461e-9
-epsilon = 0.6
+epsilon = 0.6 #0.6
 h_bar = 1.054571817e-34
 mu_b = mu_bohr
 m = 87.90561*1.66e-27
 k = 2*np.pi/lam
-S = 1.5
+S = 0.5 #1.5
 A = h_bar*k*Gamma/(2*m)
 C = 4/(Gamma**2)
-delta_0 = -2*np.pi*450e6
+delta_0 = -2*np.pi*500e6
 
 
 def Bz(z):
@@ -66,7 +66,7 @@ def simulate(v_0):
     z_tab = []
     v_tab = []
 
-    while z_sym < 0.35 and t_sym < 0.01:
+    while z_sym < 0.37 and t_sym < 0.01:
         z_tab.append(z_sym)
         v_tab.append(v_sym)
 

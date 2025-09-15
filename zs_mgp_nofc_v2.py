@@ -102,7 +102,11 @@ class ZeemanSlower():
                     175.4, 104.4, 57.1, 26.5, 11.0, 1.9, -1.6, -3.1, -3.5, -3.4
             ]
             ym = [-y/10 for y in ym]
+            ymT = [y/1000 for y in ym]
+            xmm = [x/1000 for x in xm]
             plt.scatter(xm, ym, label='measured')
+
+            np.savetxt("measured_data_fr.txt", np.column_stack((xmm, ymT)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
             # end plot measurement data
 
             # # plot simfield
