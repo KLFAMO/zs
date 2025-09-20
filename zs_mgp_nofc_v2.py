@@ -76,12 +76,12 @@ class ZeemanSlower():
                 self.set_sensor(y=0, z=0, data_x=data_x)
                 self.B = self.sensor.getB(self.mgp_objects, sumup=True)
                 plt.clf()
-                plt.scatter(self.data_x, self.data_y, label='ref')
-                plt.plot(data_x,self.B[:,0], label='simulated (0,0)')
+                plt.scatter(self.data_x, self.data_y, label='reference')
+                plt.plot(data_x,self.B[:,0], label='simulated')
             else:
                 self.set_sensor(y=0,z=0)
                 plt.clf()
-                plt.scatter(self.data_x, self.data_y, label='ref')
+                plt.scatter(self.data_x, self.data_y, label='reference')
                 plt.plot(self.data_x,self.B[:,0], label='(0,0)')
             for i in extra_plots:
                 y,z=i

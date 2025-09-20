@@ -26,6 +26,7 @@ print("Fitted parameters:", popt)
 # plot fit
 x_fit = np.linspace(0, max(dfx), 100)
 y_fit = exp_func(x_fit, *popt)
+print("Fitted parameters: ", popt)
 
 plt.scatter(data_x, data_y , label='Measurement', s=6)
 plt.plot(x_fit, y_fit, 'r-', label='Exponential fit')

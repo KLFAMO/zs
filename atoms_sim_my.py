@@ -44,10 +44,10 @@ h_bar = 1.054571817e-34
 mu_b = mu_bohr
 m = 87.90561*1.66e-27
 k = 2*np.pi/lam
-S = 0.5 #1.5
+S = 1.0 #1.5
 A = h_bar*k*Gamma/(2*m)
 C = 4/(Gamma**2)
-delta_0 = -2*np.pi*500e6
+delta_0 = -2*np.pi*535e6
 
 
 def Bz(z):
