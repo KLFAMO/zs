@@ -11,7 +11,7 @@ import numpy as np
 
 data_x, data_y = np.loadtxt('data/540-500_fit.txt', delimiter='\t', unpack=True)
 data_x = data_x + 2.636
-data_y = (data_y + 0.052)*100
+data_y = (data_y + 0.052)*100*2
 dfx = data_x[25:-1]
 dfy = data_y[25:-1]
 print(dfx)
@@ -31,9 +31,12 @@ print("Fitted parameters: ", popt)
 plt.scatter(data_x, data_y , label='Measurement', s=6)
 plt.plot(x_fit, y_fit, 'r-', label='Exponential fit')
 
+# export fit and data to txt to repod
+# np.savetxt('data/repod/load_curve_fit.txt', np.column_stack((x_fit, y_fit*1e8)), delimiter='\t')
+# np.savetxt('data/repod/load_curve_meas.txt', np.column_stack((data_x, data_y*1e8)), delimiter='\t')
 
 plt.xlabel('Time / s')
-plt.ylabel('Number of atoms / a.u.')
+plt.ylabel('Number of atoms / $10^8$')
 plt.grid()
 plt.legend()
 plt.show()

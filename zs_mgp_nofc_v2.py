@@ -78,6 +78,8 @@ class ZeemanSlower():
                 plt.clf()
                 plt.scatter(self.data_x, self.data_y, label='reference')
                 plt.plot(data_x,self.B[:,0], label='simulated')
+                np.savetxt("data/repod/simulated_data_fr.txt", np.column_stack((data_x, self.B[:,0]/1000)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
+                np.savetxt("data/repod/reference_data_fr.txt", np.column_stack((self.data_x, self.data_y/1000)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
             else:
                 self.set_sensor(y=0,z=0)
                 plt.clf()
@@ -106,36 +108,8 @@ class ZeemanSlower():
             xmm = [x/1000 for x in xm]
             plt.scatter(xm, ym, label='measured')
 
-            np.savetxt("measured_data_fr.txt", np.column_stack((xmm, ymT)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
+            # np.savetxt("data/repod/measured_data_fr.txt", np.column_stack((xmm, ymT)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
             # end plot measurement data
-
-            # # plot simfield
-            # xs, ys = np.loadtxt('C:\svnSr\progs\magnet_zs\data\simfield.dat', delimiter='\t', unpack=True, skiprows=1)
-            # xs = [-x*1000+310 for x in xs]  # convert to mm
-            # ys = [y/10 for y in ys]  # convert to mT
-            # plt.plot(xs, ys, label='simfield', color='black')
-            # # end plot simfield
-
-            # # plot satzm
-            # xs, ys = np.loadtxt('C:\svnSr\progs\magnet_zs\data\satzm.dat', delimiter='\t', unpack=True, skiprows=1)
-            # xs = [-x*1000+310 for x in xs]  # convert to mm
-            # ys = [y/10 for y in ys]  # convert to mT
-            # plt.plot(xs, ys, label='satzm', color='green')
-            # # end plot satzm
-
-            # # plot A10
-            # xs, ys = np.loadtxt('C:\svnSr\progs\magnet_zs\data\A10.dat', delimiter='\t', unpack=True, skiprows=1)
-            # xs = [-x*1000+310 for x in xs]  # convert to mm
-            # ys = [y/10 for y in ys]  # convert to mT
-            # plt.scatter(xs, ys, label='A10', color='gray')
-            # # end plot A10
-
-            # # plot A14
-            # xs, ys = np.loadtxt('C:\svnSr\progs\magnet_zs\data\A14.dat', delimiter='\t', unpack=True, skiprows=1)
-            # xs = [-x*1000+310 for x in xs]  # convert to mm
-            # ys = [y/10 for y in ys]  # convert to mT
-            # plt.scatter(xs, ys, label='A14', color='red')
-            # # end plot A14
 
             plt.legend()
             plt.grid()
