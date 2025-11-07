@@ -76,14 +76,14 @@ class ZeemanSlower():
                 self.set_sensor(y=0, z=0, data_x=data_x)
                 self.B = self.sensor.getB(self.mgp_objects, sumup=True)
                 plt.clf()
-                plt.scatter(self.data_x, self.data_y, label='reference')
-                plt.plot(data_x,self.B[:,0], label='simulated')
+                plt.scatter(self.data_x, self.data_y, label='Target')
+                plt.plot(data_x,self.B[:,0], label='Simulated')
                 np.savetxt("data/repod/simulated_data_fr.txt", np.column_stack((data_x, self.B[:,0]/1000)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
                 np.savetxt("data/repod/reference_data_fr.txt", np.column_stack((self.data_x, self.data_y/1000)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
             else:
                 self.set_sensor(y=0,z=0)
                 plt.clf()
-                plt.scatter(self.data_x, self.data_y, label='reference')
+                plt.scatter(self.data_x, self.data_y, label='Target')
                 plt.plot(self.data_x,self.B[:,0], label='(0,0)')
             for i in extra_plots:
                 y,z=i
@@ -106,7 +106,7 @@ class ZeemanSlower():
             ym = [-y/10 for y in ym]
             ymT = [y/1000 for y in ym]
             xmm = [x/1000 for x in xm]
-            plt.scatter(xm, ym, label='measured')
+            plt.scatter(xm, ym, label='Measured')
 
             # np.savetxt("data/repod/measured_data_fr.txt", np.column_stack((xmm, ymT)), fmt='%10.7f', delimiter='\t', header='x / m\tB / T')
             # end plot measurement data
