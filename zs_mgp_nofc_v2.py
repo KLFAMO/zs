@@ -53,7 +53,8 @@ class ZeemanSlower():
             rad2deg = 360/(2*np.pi)
             cube.rotate_from_rotvec(rot)
             self.mgp_objects.append(cube)
-            self.magnets.append(Magnet(position=(x, *pos), rotation=tuple([x*rad2deg for x in rot])))
+            # self.magnets.append(Magnet(position=(x, *pos), rotation=tuple([x*rad2deg for x in rot])))
+            self.magnets.append(Magnet(position=(x, *pos), rotation=rot))
     
     def add_magnets_cone(self, start_x=0, start_r=40, stop_r=40,
                          stop_x=300, number=4, magnets_rotation=0, mrg=0,
@@ -183,6 +184,33 @@ zs.calc(
         )
 print([x.position[0] for x in zs.magnets])
 #print(zs.B)
+
+# Export magnet positions and rotations to file
+def normalize_angle(angle):
+    """Normalize angle to range [-180, 180], with 0° along +X,
+    positive counterclockwise, negative clockwise."""
+    angle = (angle + 180) % 360 - 180
+    return angle
+
+magnet_data = []
+for idx, magnet in enumerate(zs.magnets):
+    pos_x, pos_y, pos_z = magnet.position
+    rot_x, rot_y, rot_z = magnet.rotation
+    # Normalize rotations to [-180, 180] range
+    rot_z = normalize_angle(rot_z)
+    if pos_y > 0:
+        magnet_data.append([pos_x, pos_y, pos_z, rot_x, rot_y, rot_z])
+
+# Sort by Pos_X (column 0)
+magnet_data = sorted(magnet_data, key=lambda row: row[0])
+
+header = "Pos_X(mm)\tPos_Y(mm)\tPos_Z(mm)\tRot_X(deg)\tRot_Y(deg)\tRot_Z(deg)"
+np.savetxt('magnets_positions_v2.dat', magnet_data, 
+           fmt='%.3f\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f',
+           header=header, comments='')
+
+print(f"\n✓ Plik 'magnets_positions_v2.dat' zapisany pomyślnie!")
+print(f"✓ Liczba magnesów: {len(magnet_data)}")
 
 # for i in zs.magnets:
 #     i.fc_draw()
