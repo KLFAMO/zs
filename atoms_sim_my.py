@@ -15,7 +15,7 @@ def import_meas():
         #sheet_name = 'ZS_computed_values', usecols=[0,3], usecols=[0,2],  
     )
     d.dropna(inplace=True)
-    z =  d.iloc[:, 0].values * 1e-3
+    z =  d.iloc[:, 0].values * 1e-2
     B = d.iloc[:, 1].values * (-1)
     #odwracanie
     # z= 0.28 - z
@@ -47,8 +47,8 @@ k = 2*np.pi/lam
 S = 1.0 #1.5
 A = h_bar*k*Gamma/(2*m)
 C = 4/(Gamma**2)
-delta_0 = -2*np.pi*535e6
-
+# delta_0 = -2*np.pi*535e6
+delta_0 = -2*np.pi*545e6
 
 def Bz(z):
     return -interp_fun(z)/100000  # T
@@ -62,7 +62,7 @@ def simulate(v_0):
     z_sym = 0
     v_sym = v_0
     t_sym = 0
-    dt = 0.00001
+    dt = 0.0000001
     z_tab = []
     v_tab = []
 
